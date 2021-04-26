@@ -51,6 +51,7 @@ public class SettingButton implements Wrapper
 
 	public void drawButton(MatrixStack matrices, int mX, int mY)
 	{
+		FrostBurn.clickGUI.drawVertLine(matrices, X+3, Y+2, Y+H-2, new Color(30, 30, 30).getRGB());
 		FrostBurn.clickGUI.drawGradient(matrices, X, Y, X + W , Y + H, new Color(218, 218, 218, 232).getRGB(), new Color(218, 218, 218, 232).getRGB());
 
 		if (isHover(getX(), getY(), getW(), getH() - 1, mX, mY)) {

@@ -62,6 +62,10 @@ public class ClickGui extends Screen implements Wrapper {
         fillGradient(matrices, (int)left, (int)top, (int)right, (int)bottom, startColor, endColor);
     }
 
+    public void drawVertLine(MatrixStack matrices, double X, double start, double end, int Color) {
+        drawVerticalLine(matrices, (int)X, (int)start, (int)end, Color);
+    }
+
     @Override
     public void onClose() {
         windows.forEach(Window::close);
