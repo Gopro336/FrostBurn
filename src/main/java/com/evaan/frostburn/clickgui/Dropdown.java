@@ -68,9 +68,9 @@ public class Dropdown {
                 buttons.add(settingButton);
 
             }*/
-
-            //add bind button
         }
+
+        //bind
     }
 
     public void render(MatrixStack matrices, int mX, int mY) {
