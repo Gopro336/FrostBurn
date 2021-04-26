@@ -24,9 +24,11 @@ public class ConfigManager {
 
 	public static void save(String name) {
 		try {
+			System.out.println("Saving config " + name + ".");
 			prepare(name);
 			for (Module module : ModuleManager.modules) {
 				config.setProperty(module.getName() + ".enabled", String.valueOf(module.isEnabled()));
+				config.setProperty(module.getName() + ".bind", String.valueOf(module.getBind()));
 				for (Setting setting : SettingsManager.getSettings(module)) {
 					config.setProperty(module.getName() + "." + setting.getName(), String.valueOf(setting.getValue()));
 				}
@@ -37,10 +39,12 @@ public class ConfigManager {
 
 	public static void load(String name) {
 		try {
+			System.out.println("Loading config " + name + ".");
 			prepare(name);
 			config.loadFromXML(new FileInputStream(configFile));
 			for (Module module : ModuleManager.modules) {
 				if (Boolean.parseBoolean(config.getProperty(module.getName()+".enabled")) != module.isEnabled()) module.setEnabled(Boolean.parseBoolean(config.getProperty(module.getName()+".enabled")));
+				module.setBind(Integer.parseInt(config.getProperty(module.getName() + ".bind")));
 				for (Setting setting : module.settings) {
 					String value = config.getProperty(module.getName() + "." + setting.getName(), null);
 					if (value != null) {
@@ -61,7 +65,7 @@ public class ConfigManager {
 					}
 				}
 			}
-		} catch (Exception ignored) {ignored.printStackTrace();}
+		} catch (Exception e) {e.printStackTrace();}
 	}
 }
 	
